@@ -27,12 +27,12 @@ def parse_single_quote(quote: Tag) -> Quote:
     )
 
 
-def get_single_page_quotes(soup: Tag) -> [Quote]:
+def get_single_page_quotes(soup: Tag) -> list[Quote]:
     quotes = soup.select(".quote")
     return [parse_single_quote(quote) for quote in quotes]
 
 
-def get_all_quotes() -> [Quote]:
+def get_all_quotes() -> list[Quote]:
     all_quotes = []
     current_page_url = BASE_URL
 
@@ -54,7 +54,7 @@ def get_all_quotes() -> [Quote]:
     return all_quotes
 
 
-def write_quotes_to_csv(quotes: [Quote], path: str) -> None:
+def write_quotes_to_csv(quotes: list[Quote], path: str) -> None:
     with open(path, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(QUOTE_FIELDS)
